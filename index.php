@@ -1,3 +1,3 @@
-<?php
-header('Location: landing.php');
+﻿<?php
+header('Location: /en/index.html');
 exit;
