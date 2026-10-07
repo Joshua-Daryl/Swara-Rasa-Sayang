@@ -1,21 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/landing.php",
-      "destination": "/index.html",
-      "statusCode": 301
-    },
-    {
-      "source": "/landing-en.php",
-      "destination": "/en/index.html",
-      "statusCode": 301
-    },
-    {
-      "source": "/hes-alive/index.php",
-      "destination": "/hes-alive/index.html",
-      "statusCode": 301
-    }
-  ]
+  "trailingSlash": false
 }

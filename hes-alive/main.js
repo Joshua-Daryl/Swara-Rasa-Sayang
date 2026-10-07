@@ -153,33 +153,30 @@ function showTrack(id, element) {
     element.classList.add('active');
 }
 
-/* ─── Track Detail Switcher ──────────────────────────────── */
+/* Track detail interaction remains available for static HTML if present; no PHP dependency. */
 function changeTrack(index, element) {
-  // 1. Reset Semua Box Kecil
   const allBoxes = document.querySelectorAll('.track-box');
   allBoxes.forEach(box => box.classList.remove('active'));
-  
-  // 2. Beri status "Active" (Menyatu) pada Box yang diklik
   element.classList.add('active');
 
-  // 3. Ambil data dari Array PHP
-  const track = trackData[index];
+  const track = trackData && trackData[index];
   const detailBox = document.getElementById('detail-box');
-  
-  // 4. Efek Transisi Menghilang Sebentar (Fade-out)
+  if (!track || !detailBox) return;
+
   detailBox.style.opacity = '0';
   detailBox.style.transition = 'opacity 0.3s ease';
 
-  // 5. Update Isi Box Besar
   setTimeout(() => {
-    document.getElementById('dt-title').innerText = track.title;
-    document.getElementById('dt-artist').innerText = track.artist;
-    document.getElementById('dt-desc').innerHTML = track.description;
-    
-    // Update link tombol menuju ke trackdetail.php sesuai lagu
-    document.getElementById('dt-link').href = `trackdetail.php?id=${index}`;
-    
-    // Efek Transisi Muncul Kembali (Fade-in)
+    const title = document.getElementById('dt-title');
+    const artist = document.getElementById('dt-artist');
+    const desc = document.getElementById('dt-desc');
+    const link = document.getElementById('dt-link');
+
+    if (title) title.innerText = track.title;
+    if (artist) artist.innerText = track.artist;
+    if (desc) desc.innerHTML = track.description;
+    if (link) link.href = '#';
+
     detailBox.style.opacity = '1';
-  }, 300); // 300ms delay agar sesuai dengan animasi transisi
+  }, 300);
 }
