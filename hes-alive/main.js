@@ -20,17 +20,19 @@
     return {
       x: rand(0, W),
       y: rand(H + 10, H + 60),
-      r: rand(.3, 1.8),
+      r: rand(.35, 1.65),
       vx: rand(-.08, .08),
       vy: rand(-.3, -.1),
-      alpha: rand(.06, .5),
+      alpha: rand(.10, .72),
       life: rand(.4, 1),
       decay: rand(.001, .0025),
-      gold: Math.random() < .4,
+      gold: Math.random() < .32,
+      twinkle: rand(.7, 1.35),
+      phase: rand(0, Math.PI * 2),
     };
   }
 
-  for(let i=0; i<140; i++){
+  for(let i=0; i<300; i++){
     const p = mkParticle();
     p.y = rand(0, H); // scatter initially
     particles.push(p);
@@ -46,12 +48,13 @@
         particles[i] = mkParticle();
         return;
       }
-      const a = p.alpha * p.life;
+      const twinkle = .72 + .28 * Math.sin(performance.now() * .0012 * p.twinkle + p.phase);
+      const a = p.alpha * p.life * twinkle;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
       ctx.fillStyle = p.gold
-        ? `rgba(201,168,76,${a})`
-        : `rgba(245,237,214,${a*.4})`;
+        ? `rgba(212,175,55,${a})`
+        : `rgba(220,232,255,${a*.62})`;
       ctx.fill();
     });
     requestAnimationFrame(draw);
@@ -142,41 +145,75 @@ function closeMobile(){
 })();
 
 
+const trackData = {
+  'hes-alive': {
+    title: "He's Alive",
+    artist: 'Swara Rasa Sayang',
+    description: 'Lagu utama yang merayakan kebangkitan Kristus dan kemenangan atas maut. Ini adalah pusat dari seluruh pesan album: hidup yang baru, semangat yang dibangkitkan, dan kasih yang menyertai sepanjang jalan iman.',
+    image: '../assets/hes-alive.jpg',
+    link: 'trackdetail.html?track=hes-alive'
+  },
+  'shine-on-me': {
+    title: 'Shine On Me',
+    artist: 'Swara Rasa Sayang',
+    description: 'Lagu ini membawa semangat penerangan, penebusan, dan rasa syukur atas kuasa Tuhan yang menyinari hati yang lelah.',
+    image: '../assets/hes-alive.jpg',
+    link: 'trackdetail.html?track=shine-on-me'
+  },
+  'seven-whispers': {
+    title: 'Seven Whispers',
+    artist: 'Swara Rasa Sayang',
+    description: 'Menyampaikan ikhtiar doa dan kesadaran akan suara Tuhan yang lembut namun penuh kuasa dalam hidup setiap orang percaya.',
+    image: '../assets/hes-alive.jpg',
+    link: 'trackdetail.html?track=seven-whispers'
+  },
+  'the-undoing': {
+    title: 'The Undoing',
+    artist: 'Swara Rasa Sayang',
+    description: 'Menjelaskan kebebasan yang datang ketika Tuhan membatalkan kuasa kegelapan dan membuka jalan baru bagi hidup yang dipulihkan.',
+    image: '../assets/hes-alive.jpg',
+    link: 'trackdetail.html?track=the-undoing'
+  },
+  'until-he-comes-again': {
+    title: 'Until He Comes Again',
+    artist: 'Swara Rasa Sayang',
+    description: 'Lagu penutup yang menguatkan harapan akan kedatangan Tuhan kembali dengan penuh semangat, kesetiaan, dan sukacita.',
+    image: '../assets/hes-alive.jpg',
+    link: 'trackdetail.html?track=until-he-comes-again'
+  }
+};
+
 function showTrack(id, element) {
-    // 1. Sembunyikan semua konten
-    document.querySelectorAll('.track-content').forEach(c => c.style.display = 'none');
-    // 2. Tampilkan konten yang dipilih
-    document.getElementById(id).style.display = 'block';
-
-    // 3. Update style box kecil (kasih class active)
-    document.querySelectorAll('.track-item').forEach(i => i.classList.remove('active'));
-    element.classList.add('active');
-}
-
-/* Track detail interaction remains available for static HTML if present; no PHP dependency. */
-function changeTrack(index, element) {
-  const allBoxes = document.querySelectorAll('.track-box');
-  allBoxes.forEach(box => box.classList.remove('active'));
-  element.classList.add('active');
-
-  const track = trackData && trackData[index];
+  const track = trackData[id];
   const detailBox = document.getElementById('detail-box');
-  if (!track || !detailBox) return;
+  const title = document.getElementById('dt-title');
+  const artist = document.getElementById('dt-artist');
+  const desc = document.getElementById('dt-desc');
+  const image = document.getElementById('dt-image');
+  const link = document.getElementById('dt-link');
+
+  if (!track || !detailBox || !title || !artist || !desc || !image || !link) return;
 
   detailBox.style.opacity = '0';
-  detailBox.style.transition = 'opacity 0.3s ease';
+  detailBox.style.transition = 'opacity 0.28s ease';
 
   setTimeout(() => {
-    const title = document.getElementById('dt-title');
-    const artist = document.getElementById('dt-artist');
-    const desc = document.getElementById('dt-desc');
-    const link = document.getElementById('dt-link');
-
-    if (title) title.innerText = track.title;
-    if (artist) artist.innerText = track.artist;
-    if (desc) desc.innerHTML = track.description;
-    if (link) link.href = '#';
-
+    title.textContent = track.title;
+    artist.textContent = track.artist;
+    desc.textContent = track.description;
+    image.src = track.image;
+    image.alt = track.title + ' detail';
+    link.href = track.link;
+    link.textContent = 'Lihat detail';
     detailBox.style.opacity = '1';
-  }, 300);
+  }, 180);
+
+  document.querySelectorAll('.track-item').forEach(item => item.classList.remove('active'));
+  if (element) element.classList.add('active');
+}
+
+function changeTrack(index, element) {
+  const keys = Object.keys(trackData);
+  const id = keys[index] || 'hes-alive';
+  showTrack(id, element);
 }

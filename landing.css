@@ -1,17 +1,17 @@
-﻿:root {
-  --bg: #120d0a;
-  --bg-soft: #1a120d;
-  --panel: rgba(25, 17, 12, 0.8);
-  --panel-strong: rgba(35, 23, 15, 0.96);
-  --gold: #d9b364;
-  --gold-soft: #f0d59d;
-  --gold-deep: #9a6f1b;
-  --ivory: #f5efe4;
-  --muted: #d7c7a8;
-  --line: rgba(217, 179, 100, 0.32);
-  --shadow: rgba(10, 8, 5, 0.35);
-  --bg-image: radial-gradient(circle at top, rgba(217, 179, 100, 0.12), transparent 35%),
-    linear-gradient(135deg, rgba(18, 13, 10, 0.96), rgba(24, 19, 14, 0.96));
+:root {
+  --bg: #020b16;
+  --bg-soft: #061527;
+  --panel: rgba(10, 34, 62, 0.55);
+  --panel-strong: rgba(12, 37, 67, 0.95);
+  --gold: #d4af37;
+  --gold-soft: #f3e5ab;
+  --gold-deep: #997f26;
+  --ivory: #ffffff;
+  --muted: #cbd7e6;
+  --line: rgba(212, 175, 55, 0.28);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --bg-image: radial-gradient(circle at 50% 0%, rgba(10, 34, 62, 0.8) 0%, rgba(2, 11, 22, 0.98) 70%),
+    linear-gradient(135deg, #020b16, #061527);
 }
 
 * { box-sizing: border-box; }
@@ -51,8 +51,8 @@ body::before {
   align-items: center;
   justify-content: space-between;
   padding: 18px 0 14px;
-  background: linear-gradient(180deg, rgba(18, 13, 10, 0.92), rgba(18, 13, 10, 0.3) 70%, transparent);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(2, 11, 22, 0.95), rgba(2, 11, 22, 0.4) 70%, transparent);
+  backdrop-filter: blur(12px);
 }
 
 .brand img {
