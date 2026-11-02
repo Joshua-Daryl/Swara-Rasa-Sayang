@@ -13,9 +13,10 @@ if (!isset($tracks[$id])) {
 }
 
 $activeTrack = $tracks[$id];
-$activeFolder = isset($activeTrack['folder']) && is_dir(__DIR__ . '/../assets/' . $activeTrack['folder'])
+$activeFolder = isset($activeTrack['folder']) && $activeTrack['folder'] !== null
+    && is_dir(__DIR__ . '/../assets/' . $activeTrack['folder'])
     ? $activeTrack['folder']
-    : 'trio';
+    : null;
 
 $trackPhotoFiles = [];
 foreach ($tracks as $track) {
@@ -266,7 +267,8 @@ $photoFiles = $trackPhotoFiles[$activeFolder] ?? [];
     const folderPhotos = <?= json_encode($trackPhotoFiles) ?>;
 
     function resolveGalleryFiles(track) {
-        const folder = track && track.folder ? track.folder : 'trio';
+        const folder = track && track.folder ? track.folder : null;
+        if (!folder) return [];
         return folderPhotos[folder] || [];
     }
 
