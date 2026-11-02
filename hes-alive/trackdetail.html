@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Tenor+Sans&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/hes-alive/style.css">
     <style>
         body.track-detail-page {
             --color-bg: #010736;
@@ -377,11 +377,11 @@
     const navBackLink = document.getElementById('nav-back-link');
     const navBackText = document.getElementById('nav-back-text');
     if (currentLang === 'en') {
-        navBackLink.href = 'index-en.html#tracks';
+        navBackLink.href = '/hes-alive/index-en.html#tracks';
         navBackText.textContent = 'Back to Album';
         document.getElementById('dt-label').textContent = 'Performed by:';
     } else {
-        navBackLink.href = 'index.html#tracks';
+        navBackLink.href = '/hes-alive/index.html#tracks';
         navBackText.textContent = 'Kembali ke Album';
         document.getElementById('dt-label').textContent = 'Dibawakan oleh:';
     }
@@ -428,7 +428,7 @@
             itemDiv.classList.add('gallery-item');
 
             const img = document.createElement('img');
-            img.src = `../assets/${folder}/${file}`;
+            img.src = `/assets/${folder}/${file}`;
             img.alt = track ? track.title : 'Track gallery';
             img.loading = 'lazy';
             img.onerror = function() {

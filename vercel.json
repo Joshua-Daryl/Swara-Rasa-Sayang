@@ -1,8 +1,10 @@
 {
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": false,
   "redirects": [
     { "source": "/index.php", "destination": "/", "permanent": true },
+    { "source": "/hes-alive", "destination": "/hes-alive/index.html", "permanent": true },
+    { "source": "/hes-alive/", "destination": "/hes-alive/index.html", "permanent": true },
     { "source": "/hes-alive/index.php", "destination": "/hes-alive/index.html", "permanent": true },
     { "source": "/hes-alive/index-en.php", "destination": "/hes-alive/index-en.html", "permanent": true },
     { "source": "/hes-alive/trackdetail.php", "destination": "/hes-alive/trackdetail.html", "permanent": true }
