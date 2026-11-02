@@ -1,8 +1,2 @@
 Options -Indexes
-
-# Ensure all .php files are executed by PHP (not downloaded)
-<FilesMatch "\.php$">
-    SetHandler application/x-httpd-php
-</FilesMatch>
-
 RewriteEngine On
