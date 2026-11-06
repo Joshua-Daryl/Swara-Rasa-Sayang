@@ -1,0 +1,4 @@
+git status
+git add .
+git commit -m "visi misi"
+git push origin main

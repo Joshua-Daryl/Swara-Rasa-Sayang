@@ -15,6 +15,47 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="landing.css" />
+
+    <style>
+      /* Ukuran sedang untuk bagian Visi dan Misi */
+      .highlight-band {
+        box-sizing: border-box;
+        padding: 2cm !important;
+        margin: 2rem auto !important;
+        width: calc(100% - 2rem);
+        max-width: 1200px;
+      }
+
+      .highlight-band > div {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .highlight-band .section-kicker {
+        display: block;
+        margin-bottom: 0.75rem;
+      }
+
+      .highlight-band h3 {
+        margin: 0;
+        font-size: clamp(1.05rem, 1.5vw, 1.3rem) !important;
+        line-height: 1.65 !important;
+        font-weight: 500;
+      }
+
+      @media (max-width: 600px) {
+        .highlight-band {
+          padding: 2cm !important;
+          width: calc(100% - 1.25rem);
+        }
+
+        .highlight-band h3 {
+          font-size: 1rem !important;
+          line-height: 1.6 !important;
+        }
+      }
+    </style>
+
   </head>
   <body>
     <div class="page-shell">
